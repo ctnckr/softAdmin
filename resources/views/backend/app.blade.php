@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="/backend/plugins/fontawesome-free/css/all.min.css">
     <link rel="stylesheet" href="/backend/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
     <link rel="stylesheet" href="/backend/dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="/backend/plugins/toastr/toastr.min.css">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
     @yield("css")
@@ -219,6 +220,7 @@
 <script src="/backend/plugins/jquery-mapael/maps/usa_states.min.js"></script>
 <script src="/backend/plugins/chart.js/Chart.min.js"></script>
 <script src="/backend/dist/js/pages/dashboard2.js"></script>
+<script src="/backend/plugins/toastr/toastr.min.js"></script>
 
 <script>
     $.ajaxSetup({
