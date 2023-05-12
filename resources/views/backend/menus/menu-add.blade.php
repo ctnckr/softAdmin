@@ -49,16 +49,8 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label>Sayfa Seç</label>
-                                            <select name="page_id" class="form-control select2" style="width: 100%;">
-                                             </select>
-                                        </div>
-
-
-
-                                        <div class="form-group">
                                             <label for="">Menü Görünürlüğü</label><br>
-                                            <input type="checkbox" name="menu_status" checked data-bootstrap-switch>
+                                            <input type="checkbox" name="status" checked data-bootstrap-switch>
                                         </div>
                                     </div>
 

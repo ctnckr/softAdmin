@@ -1,6 +1,7 @@
 @extends('backend.app')
 
 @section('content')
+
     <div class="content-wrapper">
         <div class="content-header">
             <div class="container-fluid">
@@ -34,24 +35,17 @@
                             </tr>
                             </thead>
                             <tbody id="sortable">
-                            <tr id="item-">
-                                <td class="sortable">Trident</td>
-                                <td>Win 95+</td>
+                            @foreach($menus as $menu)
+                            <tr id="item-{{$menu->id}}">
+                                <td class="sortable">{{$menu->menu_name}}</td>
+                                <td>{{$menu->created_at}}</td>
                                 <td>
                                     <a href="page-edit.html" class="btn btn-primary"><i class="fas fa-edit"></i>&nbsp;Düzenle</a>
                                     <button class="btn btn-danger"><i class="fas fa-trash-alt"></i>&nbsp;Sil</button>
                                     <button class="btn btn-success"><i class="fas fa-eye"></i>&nbsp;Aktif/Pasif</button>
                                 </td>
                             </tr>
-                            <tr id="item-">
-                                <td class="sortable">merhaba</td>
-                                <td>Win 95+</td>
-                                <td>
-                                    <a href="page-edit.html" class="btn btn-primary"><i class="fas fa-edit"></i>&nbsp;Düzenle</a>
-                                    <button class="btn btn-danger"><i class="fas fa-trash-alt"></i>&nbsp;Sil</button>
-                                    <button class="btn btn-success"><i class="fas fa-eye"></i>&nbsp;Aktif/Pasif</button>
-                                </td>
-                            </tr>
+                            @endforeach
                             </tbody>
 
                         </table>
@@ -82,13 +76,13 @@
                 $.ajax({
                     type: "POST",
                     data: data,
-                    url: "/index.html",
-                    success: function (msg) {
-                        // console.log(msg);
-                        if (msg) {
-                            console.log("başarılı")
-                        } else {
-                            console.log("İşlem Başarısız");
+                    url: "{{route('menus')}}",
+                    success: function (response) {
+                        if (response.status=="success"){
+                            toastr.success(response.content, response.title);
+                        }
+                        else{
+                            toastr.error(response.content, response.title);
                         }
                     }
                 });

@@ -10,7 +10,8 @@ use Illuminate\Support\Str;
 class MenusController extends Controller
 {
     public function getMenus(){
-        return view('backend.menus.menus');
+        $menus = Menu::orderBy('list','asc')->get();
+        return view('backend.menus.menus')->with('menus',$menus);
     }
 
     public function  getMenusAdd(){
@@ -22,15 +23,30 @@ class MenusController extends Controller
         return view('backend.menus.menu-edit');
     }
 
-    public function postMenusAdd(Request $request){
+    public function postMenus(){
+        try {
+           foreach ($_POST['item'] as $key => $value){
+               $menus = Menu::find(intval($value));
+               $menus -> list = intval($key);
+               $menus -> save();
+           }
+             return response(['status' => 'success', 'title' => 'Başarılı', 'content' => 'Menü Sırası Değiştirildi']);
+        }
+         catch (\Exception $e) {
+            return response(['status' => 'error', 'title' => 'Başarısız', 'content' => 'Menü Sırası Değiştirilemedi']);
+        }
+    }
+
+    public function postMenusAdd(Request $request)
+    {
         try {
             $slug = Str::slug($request->menu_name, '-');
-            $request->merge(['menu_slag'=>$slug]);
+            $request->merge(['menu_slug' => $slug]);
+            $request->merge(['menu_status' => $request->menu_status == 'on' ? 'on' : 'off']);
             Menu::create($request->all());
-            return response(['status'=>'success','title'=>'Başarılı','content'=>'Menü Eklendi']);
-        }
-        catch (\Exception $e){
-            return response(['status'=>'error','title'=>'Başarısız','content'=>'Menü Eklenemedi']);
+            return response(['status' => 'success', 'title' => 'Başarılı', 'content' => 'Menü Eklendi']);
+        } catch (\Exception $e) {
+            return response(['status' => 'error', 'title' => 'Başarısız', 'content' => 'Menü Eklenemedi']);
         }
     }
 

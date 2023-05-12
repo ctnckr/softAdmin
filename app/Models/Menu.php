@@ -14,8 +14,9 @@ class Menu extends Model
     protected $fillable = [
         'menu_name',
         'page_id',
-        'menu_slag',
+        'menu_slug',
         'up_menu',
         'menu_status',
+        'list',
     ];
 }

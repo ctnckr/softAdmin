@@ -25,12 +25,14 @@ class CreateMenusTable extends Migration
     public function up()
     {
         Schema::create('menus', static function (Blueprint $table) {
+    #Tabloya yeni kolon eklemek için php artisan migrate:refresh komutu kullanılır.
             $table->id();
             $table->string('menu_name', 255)->nullable();
-            $table->integer('page_id');
-            $table->string('menu_slag', 255)->nullable();
+            $table->integer('page_id')->nullable();
+            $table->string('menu_slug', 255)->nullable();
             $table->integer('up_menu');
             $table->string('menu_status');
+            $table->integer('list')->nullable();
             $table->timestamps();
         });
     }

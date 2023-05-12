@@ -31,6 +31,7 @@ Route::prefix("admin")->group(function (){
     Route::get('/menus', [App\Http\Controllers\Menus\MenusController::class, 'getMenus'])->name('menus');
     Route::get('/menu-add', [App\Http\Controllers\Menus\MenusController::class, 'getMenusAdd'])->name('menu-add');
     Route::get('/menu-edit', [App\Http\Controllers\Menus\MenusController::class, 'getMenusEdit'])->name('menu-edit');
+    Route::post('/menus', [App\Http\Controllers\Menus\MenusController::class, 'postMenus'])->name('menus');
     Route::post('/menu-add', [App\Http\Controllers\Menus\MenusController::class, 'postMenusAdd'])->name('menu-add');
     Route::post('/menu-edit', [App\Http\Controllers\Menus\MenusController::class, 'postMenusEdit'])->name('menu-edit');
 
