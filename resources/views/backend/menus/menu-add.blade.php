@@ -42,10 +42,20 @@
                                             </select>
                                         </div>
 
+
                                         <div class="form-group">
                                             <label>Menü Adı</label>
                                             <input name="menu_name" type="text" class="form-control"
                                                    placeholder="Menü Adı Yazınız">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Sayfa Seç</label>
+                                            <select name="up_menu" class="form-control select2" style="width: 100%;">
+                                                @foreach($pages as $page)
+                                                    <option value="{{$page->id}}">{{$page->page_name}}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
 
                                         <div class="form-group">

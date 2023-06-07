@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Menus;
 use App\Models\Menu;
 use App\Http\Controllers\Controller;
+use App\Models\Pages;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -10,13 +11,14 @@ use Illuminate\Support\Str;
 class MenusController extends Controller
 {
     public function getMenus(){
-        $menus = Menu::orderBy('list','asc')->get();
+        $menus = Menu::where('up_menu', '0') -> orderBy('list','asc')->get();
         return view('backend.menus.menus')->with('menus',$menus);
     }
 
     public function  getMenusAdd(){
+        $pages= Pages::all();
         $menus = Menu::all();
-        return view('backend.menus.menu-add')->with('menus',$menus);
+        return view('backend.menus.menu-add')->with('menus',$menus) -> with('pages',$pages);
     }
 
     public function  getMenusEdit(){

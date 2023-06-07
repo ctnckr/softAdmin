@@ -19,4 +19,7 @@ class Menu extends Model
         'menu_status',
         'list',
     ];
+    public function children(){
+        return $this->hasMany('App\Models\Menu', 'up_menu');
+    }
 }

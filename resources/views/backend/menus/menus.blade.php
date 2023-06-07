@@ -30,6 +30,7 @@
                             <thead>
                             <tr>
                                 <th>Menü Adı</th>
+                                <th>Sayfa Adı</th>
                                 <th>Oluşturulma Tarihi</th>
                                 <th>İşlemler</th>
                             </tr>
@@ -38,13 +39,30 @@
                             @foreach($menus as $menu)
                             <tr id="item-{{$menu->id}}">
                                 <td class="sortable">{{$menu->menu_name}}</td>
+                                <td>{{$menu->page_id}}</td>
                                 <td>{{$menu->created_at}}</td>
                                 <td>
                                     <a href="page-edit.html" class="btn btn-primary"><i class="fas fa-edit"></i>&nbsp;Düzenle</a>
-                                    <button class="btn btn-danger"><i class="fas fa-trash-alt"></i>&nbsp;Sil</button>
-                                    <button class="btn btn-success"><i class="fas fa-eye"></i>&nbsp;Aktif/Pasif</button>
+                                    <button class="btn btn-danger"><i class="fas fa-trash-alt"></i>&nbsp;Sil
+                                    </button>
+                                    <button class="btn btn-success"><i class="fas fa-eye"></i>&nbsp;Aktif/Pasif
+                                    </button>
                                 </td>
                             </tr>
+                            @foreach($menu -> children as $downMenu)
+                                <tr id="item-{{$downMenu->id}}">
+                                    <td class="sortable">{{$menu->menu_name}} -> {{$downMenu->menu_name}}</td>
+                                    <td>{{$downMenu->page_id}}</td>
+                                    <td>{{$downMenu->created_at}}</td>
+                                    <td>
+                                        <a href="page-edit.html" class="btn btn-primary"><i class="fas fa-edit"></i>&nbsp;Düzenle</a>
+                                        <button class="btn btn-danger"><i class="fas fa-trash-alt"></i>&nbsp;Sil
+                                        </button>
+                                        <button class="btn btn-success"><i class="fas fa-eye"></i>&nbsp;Aktif/Pasif
+                                        </button>
+                                    </td>
+                                </tr>
+                            @endforeach
                             @endforeach
                             </tbody>
 
